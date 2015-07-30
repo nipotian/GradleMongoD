@@ -2,12 +2,12 @@ package pdv.user.test.dao;
 
 import java.util.List;
 
+import org.springframework.data.mongodb.repository.MongoRepository;
+
 import pdv.user.test.entity.User;
 
-public interface UserDao {
+public interface UserDao extends MongoRepository<User,Integer>{
 
-	public User save(User user);
-	public User getUserByEmail(String email);
-	public List<User> getUsers();
+	List<User> findByEmail(String email);
 	
 }

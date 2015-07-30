@@ -9,5 +9,6 @@ public interface UserService {
 	public User save(User user);
 	public User getUserByEmail(String email);
 	public List<User> getUsers();
+	public User update(User user);
 
 }

@@ -24,19 +24,19 @@ public class IndexController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public User addUser(@RequestParam String fn,
-			@RequestParam String ln,
-			@RequestParam String ml,
-			@RequestParam String pw
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public User addUser(@RequestParam String firstname,
+			@RequestParam String lastname,
+			@RequestParam String email,
+			@RequestParam String password
 			){
-		User u= new User(fn,ln,ml,pw);
+		User u= new User(firstname,lastname,email,password);
 		return userService.save(u);
 	}
 	
 	@RequestMapping(value = "/getuser", method = RequestMethod.GET)
-	public User getUser(@RequestParam String ml){
-		User u=userService.getUserByEmail(ml);
+	public User getUser(@RequestParam String email){
+		User u=userService.getUserByEmail(email);
 		return u;
 	}
 	
@@ -44,4 +44,14 @@ public class IndexController {
 	public List<User> getList(){
 		return userService.getUsers();
 	}
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public User updateUser(@RequestParam Integer id,
+			@RequestParam String firstname,
+			@RequestParam String lastname
+			){
+		User u= new User(firstname,lastname,null,null);
+		u.setId(id);
+		return userService.update(u);
+	}
+	
 }
